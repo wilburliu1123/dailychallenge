@@ -32,4 +32,32 @@ class cloneTreeAndGraph {
         }
         return cloneNode;
     }
+    // maximum Minimum path (priorityQueue search)
+    public int maximumMinimumPath(int[][] A) {
+        int m = A.length;
+        int n = A[0].length;
+        int[] x_dir = new int[]{1, -1, 0, 0};
+        int[] y_dir = new int[]{0, 0, 1, -1};
+        PriorityQueue<int[]> heap = new PriorityQueue<>((b, a) -> A[a[0]][a[1]] - A[b[0]][b[1]]);
+        boolean[][] visited = new boolean[m][n];
+        heap.add(new int[] {0, 0, A[0][0]});
+
+        while (!heap.isEmpty()) {
+            int[] curr = heap.poll();
+            visited[curr[0]][curr[1]] = true;
+            for (int i = 0; i < 4; i++) {
+                int row = curr[0] + x_dir[i];
+                int col = curr[1] + y_dir[i];
+                if (row == m - 1 && col == n - 1) {
+                    return Math.min(curr[2], A[row][col]);
+                }
+                if (row >= 0 && row < m && col >= 0 && col < n && !visited[row][col]) {
+                    int val = A[row][col];
+                    heap.add(new int[]{row, col, Math.min(curr[2], val)});
+                }
+            }
+        }
+        return 0;
+    }
+
 }
