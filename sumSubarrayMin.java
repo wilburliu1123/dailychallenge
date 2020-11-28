@@ -12,7 +12,7 @@ class sumSubarrayMin {
             left[i] = count;
         }
         // same concept, reverse the step to count how many subarray for each subarray min
-        for (int i = n - 1; i >= 0; --i) {
+        for (int i = n - 1; i >= 0; i--) {
             int count = 1;
             while (!s2.isEmpty() && s2.peek()[0] >= arr[i])
                 count += s2.pop()[1];
@@ -20,7 +20,7 @@ class sumSubarrayMin {
             right[i] = count;
         }
         // use the two array to calculate result
-        for (int i = 0; i < n; ++i)
+        for (int i = 0; i < n; i++)
             res = (res + arr[i] * left[i] * right[i]) % mod;
         return res;
     }
