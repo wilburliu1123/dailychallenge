@@ -1,11 +1,11 @@
-class nextGreaterElements2(int[] nums) {
-    public int[] nextGreaterElements(int[] A) {
-        int n = A.length, res[] = new int[n];
+class nextGreaterElements2 {
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length, res[] = new int[n];
         Arrays.fill(res, -1);
-        Stack<Integer> stack = new Stack<>();
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
         for (int i = 0; i < n * 2; i++) {
-            while (!stack.isEmpty() && A[stack.peek()] < A[i % n])
-                res[stack.pop()] = A[i % n];
+            while (!stack.isEmpty() && nums[stack.peek()] < nums[i % n])
+                res[stack.pop()] = nums[i % n];
             stack.push(i % n);
         }
         return res;
