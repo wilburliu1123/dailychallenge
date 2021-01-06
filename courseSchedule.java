@@ -20,4 +20,28 @@ class courseSchedule {
         }
         return bfs.size() == numCourses;
     }
+    // hashmap solution
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        int[] indegree = new int[numCourses];
+        for (int i = 0; i < prerequisites.length; i++) {
+            int end = prerequisites[i][0], start = prerequisites[i][1];
+            graph.putIfAbsent(start, new ArrayList<>());
+            graph.get(start).add(end);
+            indegree[end]++;
+        }
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (indegree[i] == 0) q.add(i);
+        }
+        int count = 0;
+        while(!q.isEmpty()) {
+            int cur = q.poll();
+            count++;
+            for (int next : graph.getOrDefault(cur, new ArrayList<>()))
+                if (--indegree[next] == 0)
+                    q.add(next);
+        }
+        return count == numCourses;
+    }
 }
