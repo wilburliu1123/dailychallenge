@@ -5,7 +5,6 @@ class minimumJumps {
         int max = 0;
         // Set<Integer> set = new HashSet<>();
         for (int i : forbidden) {
-            // set.add(i);
             visited[i][0] = -1;
             visited[i][1] = -1;
             max = Math.max(max, i);
