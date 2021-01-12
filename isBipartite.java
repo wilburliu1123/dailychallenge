@@ -25,7 +25,7 @@ class DFS {
     }
 }
 
-
+//BFS
 class BFS{
     public boolean isBipartite(int[][] graph) {
         int m = graph.length;
