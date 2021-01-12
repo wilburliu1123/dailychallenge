@@ -11,7 +11,6 @@ class minimumJumps {
             max = Math.max(max, i);
         }
         int limit = Math.max(max, x) + b;
-        // System.out.println(limit);
         Queue<Pair<Integer, Integer>> q = new LinkedList<>();
         q.add(new Pair(0,0));
         int step = 0;
