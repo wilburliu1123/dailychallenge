@@ -1,6 +1,6 @@
 class WordDictionary {
   TrieNode root;
-  
+
   public WordDictionary() {
     root = new TrieNode();
   }
