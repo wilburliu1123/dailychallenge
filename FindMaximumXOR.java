@@ -24,23 +24,37 @@ class Trie {
     }
     node.num = x;
   }
-
-  public int search(int x) {
-    TrieNode node = root;
-    int res = 0;
-    for (int i = 30; i >= 0; i--) {
-      int cur = x >> i & 1;
-      int negate = ~cur;
-      negate += 2;
-      if (node.children[negate] != null) {
-        node = node.children[negate];
-        res = res * 2 + negate;
-      } else {
-        node = node.children[cur];
-        res = res * 2 + cur;
-      }
+  class Trie {
+    TrieNode root;
+    public Trie() {
+      root = new TrieNode();
     }
-    return res ^ x;
+
+    public void insert(int x) {
+      TrieNode node = root;
+      for (int i = 30; i >= 0; i--) {
+        int cur = x >> i & 1;
+        if (node.children[cur] == null) node.children[cur] = new TrieNode();
+        node = node.children[cur];
+      }
+      node.num = x;
+    }
+
+    public int search(int x) {
+      TrieNode node = root;
+      int res = 0;
+      for (int i = 30; i >= 0; i--) {
+        int cur = x >> i & 1;
+        if (node.children[cur ^ 1] != null) {
+          node = node.children[cur ^ 1];
+          res = res * 2 + cur ^ 1;
+        } else {
+          node = node.children[cur];
+          res = res * 2 + cur;
+        }
+      }
+      return res ^ x;
+    }
   }
 }
 class TrieNode {
