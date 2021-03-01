@@ -61,12 +61,10 @@ class Trie {
       if (node.children[cur] == null) node.children[cur] = new TrieNode();
       node = node.children[cur];
     }
-    node.isNum = true;
   }
 }
 class TrieNode {
   TrieNode[] children;
-  boolean isNum;
   public TrieNode() {
     children = new TrieNode[2];
   }
