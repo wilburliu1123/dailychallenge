@@ -30,6 +30,7 @@ class PalindromePair {
   }
   private void search(String word, int index, TrieNode node, List<List<Integer>> res) {
     for (int i = 0; i < word.length(); i++) {
+      // if there is empty string "" in trie and current word is palindrome, add it to result
       if (node.idx != -1 && node.idx != index && isPalindrome(word, i, word.length() - 1)) {
         res.add(Arrays.asList(index, node.idx));
       }
