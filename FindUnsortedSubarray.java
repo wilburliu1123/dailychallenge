@@ -12,8 +12,8 @@ class FindUnsortedSubarray {
       }
     }
     for (int i = r - 1; i >= 0; i--) {
-      while ( r< nums.length && nums[r] < nums[i]) r++;
+      while (r < nums.length && nums[r] < nums[i]) r++;
     }
-    return r - l -1;
+    return r - l - 1;
   }
 }
