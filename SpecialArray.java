@@ -28,4 +28,19 @@ class SpecialArray {
 
     return -1;
   }
+  // counting sort
+  public int specialArray(int[] nums) {
+    int n = nums.length;
+    int[] B = new int[1001];
+    for (int i = 0; i < n; i++) {
+      B[nums[i]]++;
+    }
+    // System.out.println(Arrays.toString(B));
+    int total = nums.length;
+    for (int i = 0; i <= n; i++) {
+      if (total == i) return i;
+      total -= B[i];
+    }
+    return -1;
+  }
 }
